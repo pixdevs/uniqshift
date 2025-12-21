@@ -8,13 +8,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="src/favico.png">
+    <link rel="apple-touch-icon" href="src/favico.png">
+    <link rel="shortcut icon" href="src/favico.png">
 </head>
 <body>
     <!-- Header & Navigation -->
     <header class="header" id="header">
         <nav class="nav container">
             <div class="nav__logo">
-                <a href="#home">UniqShift Ventures</a>
+                <a href="#home" aria-label="UniqShift Ventures Home" class="nav__logo-link">
+                    <img src="src/favico.png" alt="UniqShift Ventures" class="nav__logo-icon">
+                    <span>UniqShift Ventures</span>
+                </a>
             </div>
             <ul class="nav__menu" id="nav-menu">
                 <li class="nav__item">
@@ -354,7 +361,10 @@
         <div class="container">
             <div class="footer__content">
                 <div class="footer__brand">
-                    <h3 class="footer__logo">UniqShift Ventures</h3>
+                    <div class="footer__logo-wrapper">
+                        <img src="src/favico.png" alt="UniqShift Ventures" class="footer__logo-icon">
+                        <h3 class="footer__logo">UniqShift Ventures</h3>
+                    </div>
                     <p class="footer__tagline">Shaping Institutions & Businesses for a Future-ready World</p>
                 </div>
                 <div class="footer__links">
