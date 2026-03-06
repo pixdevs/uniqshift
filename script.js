@@ -29,11 +29,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
-        
+
         if (targetId === '#') return;
-        
+
         const targetElement = document.querySelector(targetId);
-        
+
         if (targetElement) {
             const headerOffset = 70;
             const elementPosition = targetElement.getBoundingClientRect().top;
@@ -53,13 +53,13 @@ let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
-    
+
     if (currentScroll > 100) {
         header.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.1)';
     } else {
         header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.05)';
     }
-    
+
     lastScroll = currentScroll;
 });
 
@@ -91,45 +91,45 @@ const contactForm = document.getElementById('contact-form');
 
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
+
     // Get form data
     const formData = new FormData(contactForm);
     const data = Object.fromEntries(formData);
-    
+
     // Basic validation
     if (!data.name || !data.email || !data.institution || !data.message) {
         alert('Please fill in all required fields.');
         return;
     }
-    
+
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(data.email)) {
         alert('Please enter a valid email address.');
         return;
     }
-    
+
     // In a real application, you would send this data to a server
     // For now, we'll show a success message and log the data
     console.log('Form submitted with data:', data);
-    
+
     // Show success message
     const submitButton = contactForm.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;
     submitButton.textContent = 'Message Sent!';
     submitButton.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
     submitButton.disabled = true;
-    
+
     // Reset form
     contactForm.reset();
-    
+
     // Reset button after 3 seconds
     setTimeout(() => {
         submitButton.textContent = originalText;
         submitButton.style.background = '';
         submitButton.disabled = false;
     }, 3000);
-    
+
     // Optional: You can integrate with email services like EmailJS, Formspree, etc.
     // Example with EmailJS (requires EmailJS account):
     // emailjs.send('service_id', 'template_id', data)
@@ -191,12 +191,12 @@ scrollTopBtn.addEventListener('click', () => {
 const formInputs = document.querySelectorAll('.form__input');
 
 formInputs.forEach(input => {
-    input.addEventListener('focus', function() {
+    input.addEventListener('focus', function () {
         this.parentElement.style.transform = 'scale(1.02)';
         this.parentElement.style.transition = 'transform 0.2s ease';
     });
-    
-    input.addEventListener('blur', function() {
+
+    input.addEventListener('blur', function () {
         this.parentElement.style.transform = 'scale(1)';
     });
 });
@@ -245,19 +245,50 @@ html.setAttribute('data-theme', savedTheme);
 document.addEventListener('DOMContentLoaded', () => {
     // Any initialization code
     console.log('UniqShift Ventures website loaded successfully');
-    
+
     // Initialize theme toggle switch
     const themeToggle = document.getElementById('theme-toggle');
-    
+
     if (themeToggle) {
         // Set initial state based on saved theme
         themeToggle.checked = savedTheme === 'dark';
-        
+
         // Toggle theme on switch change
         themeToggle.addEventListener('change', () => {
             const newTheme = themeToggle.checked ? 'dark' : 'light';
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
+        });
+    }
+
+    // ===== Floating Contact Button =====
+    const floatingContact = document.getElementById('floating-contact');
+    const floatingContactBtn = document.getElementById('floating-contact-btn');
+
+    if (floatingContact && floatingContactBtn) {
+        // Toggle menu on button click
+        floatingContactBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            floatingContact.classList.toggle('is-open');
+            const isOpen = floatingContact.classList.contains('is-open');
+            floatingContactBtn.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (floatingContact.classList.contains('is-open') && !floatingContact.contains(e.target)) {
+                floatingContact.classList.remove('is-open');
+                floatingContactBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close menu on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && floatingContact.classList.contains('is-open')) {
+                floatingContact.classList.remove('is-open');
+                floatingContactBtn.setAttribute('aria-expanded', 'false');
+                floatingContactBtn.focus();
+            }
         });
     }
 });
