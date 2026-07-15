@@ -11,6 +11,10 @@ function updateThemeToggleLabel(theme) {
     themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
 }
 
+function isMobileContact() {
+    return window.matchMedia('(max-width: 640px)').matches;
+}
+
 // ===== Mobile Navigation =====
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
@@ -37,11 +41,64 @@ document.addEventListener('click', (e) => {
     }
 });
 
+// ===== Contact dialog =====
+const contactDialog = document.getElementById('contact-dialog');
+const contactOpenBtn = document.getElementById('contact-open-btn');
+const contactCloseBtn = document.getElementById('contact-dialog-close');
+
+function openContactDialog() {
+    if (!contactDialog || typeof contactDialog.showModal !== 'function') return;
+    if (!contactDialog.open) {
+        contactDialog.showModal();
+    }
+}
+
+function closeContactDialog() {
+    if (!contactDialog || !contactDialog.open) return;
+    contactDialog.close();
+}
+
+if (contactOpenBtn) {
+    contactOpenBtn.addEventListener('click', () => openContactDialog());
+}
+
+if (contactCloseBtn) {
+    contactCloseBtn.addEventListener('click', () => closeContactDialog());
+}
+
+if (contactDialog) {
+    contactDialog.addEventListener('click', (e) => {
+        if (e.target === contactDialog) {
+            closeContactDialog();
+        }
+    });
+}
+
+function goToContact(e) {
+    if (e) e.preventDefault();
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+        const headerOffset = 70;
+        const offsetPosition =
+            contactSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    }
+    if (isMobileContact()) {
+        openContactDialog();
+    }
+}
+
 // ===== Smooth Scroll =====
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
         const targetId = this.getAttribute('href');
         if (!targetId || targetId === '#') return;
+
+        if (targetId === '#contact') {
+            goToContact(e);
+            setNavOpen(false);
+            return;
+        }
 
         const targetElement = document.querySelector(targetId);
         if (!targetElement) return;
@@ -69,7 +126,7 @@ window.addEventListener('scroll', updateHeaderScroll, { passive: true });
 updateHeaderScroll();
 
 // ===== Active nav section =====
-const sectionIds = ['home', 'about', 'why-choose-us', 'services', 'founder', 'contact', 'privacy'];
+const sectionIds = ['home', 'about', 'why-choose-us', 'services', 'founder', 'contact'];
 const sections = sectionIds
     .map((id) => document.getElementById(id))
     .filter(Boolean);
@@ -81,7 +138,13 @@ const navObserver = new IntersectionObserver(
             const id = entry.target.id;
             navLinks.forEach((link) => {
                 const href = link.getAttribute('href');
-                link.classList.toggle('nav__link--active', href === `#${id}`);
+                const isActive = href === `#${id}`;
+                link.classList.toggle('nav__link--active', isActive);
+                if (isActive) {
+                    link.setAttribute('aria-current', 'page');
+                } else {
+                    link.removeAttribute('aria-current');
+                }
             });
         });
     },
@@ -185,7 +248,10 @@ if (contactForm) {
             formSubmit.textContent = originalText;
             formSubmit.classList.remove('btn--success');
             formSubmit.disabled = false;
-        }, 3000);
+            if (isMobileContact()) {
+                closeContactDialog();
+            }
+        }, 1800);
     });
 }
 
@@ -246,5 +312,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 floatingContactBtn.focus();
             }
         });
+    }
+
+    if (window.location.hash === '#contact' && isMobileContact()) {
+        goToContact();
     }
 });
