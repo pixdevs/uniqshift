@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Empowering educational institutions and emerging businesses to move beyond daily challenges and build sustainable, industry-aligned ecosystems.">
     <meta property="og:image" content="src/metaBgd.jpg">
     <meta property="og:image:alt" content="UniqShift | Engineering Future-Ready Ecosystems">
     <meta property="og:type" content="website">
@@ -14,18 +16,25 @@
     <meta property="og:locale" content="en_US">
     <meta property="og:locale:alternate" content="ta_IN">
     <title>UniqShift Ventures - Shaping Institutions & Businesses for a Future-ready World</title>
+    <script>
+        (function () {
+            var theme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="src/favico.png">
     <link rel="apple-touch-icon" href="src/favico.png">
     <link rel="shortcut icon" href="src/favico.png">
 </head>
 
 <body>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
     <!-- Header & Navigation -->
     <header class="header" id="header">
         <nav class="nav container">
@@ -56,32 +65,32 @@
                 </li>
             </ul>
             <div class="nav__actions">
-                <label class="theme-switch" for="theme-toggle">
-                    <input type="checkbox" id="theme-toggle" class="theme-switch__input">
-                    <span class="theme-switch__slider"></span>
-                </label>
-                <div class="nav__toggle" id="nav-toggle">
+                <button class="nav__toggle" id="nav-toggle" type="button" aria-label="Toggle menu"
+                    aria-expanded="false" aria-controls="nav-menu">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </button>
             </div>
         </nav>
     </header>
 
     <!-- Home (Hero Section) -->
     <section class="hero" id="home">
+        <div class="hero__ambient" aria-hidden="true"></div>
         <div class="container">
             <div class="hero__content">
-                <h1 class="hero__title">Shaping Institutions & Businesses for a Future-ready World</h1>
-                <p class="hero__subtitle">Empowering educational institutions and emerging businesses to move beyond
-                    daily challenges and build sustainable, industry-aligned ecosystems.</p>
-                <div class="hero__actions">
+                <h1 class="hero__title hero-enter" style="--enter-delay: 0s">Shaping Institutions & Businesses for a
+                    Future-ready World</h1>
+                <p class="hero__subtitle hero-enter" style="--enter-delay: 0.12s">Empowering educational institutions and
+                    emerging businesses to move beyond daily challenges and build sustainable, industry-aligned
+                    ecosystems.</p>
+                <div class="hero__actions hero-enter" style="--enter-delay: 0.24s">
                     <a href="#contact" class="btn btn--primary">Contact Us</a>
                 </div>
             </div>
             <div class="hero__highlights">
-                <div class="hero__highlight">
+                <div class="hero__highlight hero-enter" style="--enter-delay: 0.36s">
                     <div class="hero__highlight-icon">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="1.5"
@@ -97,7 +106,7 @@
                         <p class="hero__highlight-text">Transforming learning ecosystems</p>
                     </div>
                 </div>
-                <div class="hero__highlight">
+                <div class="hero__highlight hero-enter" style="--enter-delay: 0.48s">
                     <div class="hero__highlight-icon">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -115,7 +124,7 @@
                         <p class="hero__highlight-text">Bridging academia and enterprise</p>
                     </div>
                 </div>
-                <div class="hero__highlight">
+                <div class="hero__highlight hero-enter" style="--enter-delay: 0.6s">
                     <div class="hero__highlight-icon">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -148,12 +157,12 @@
     <!-- About Us -->
     <section class="about" id="about">
         <div class="container">
-            <div class="section__header">
+            <div class="section__header reveal">
                 <h2 class="section__title">About UniqShift Ventures</h2>
                 <p class="section__subtitle">Your Strategic Partner in Institutional & Business Transformation</p>
             </div>
             <div class="about__content">
-                <div class="about__main">
+                <div class="about__main reveal">
                     <p class="about__lead">UniqShift Ventures is a strategic consulting firm that transforms educational
                         institutions and emerging businesses by bridging the gap between academia and industry. We work
                         with organizations to build sustainable, industry-aligned ecosystems that drive long-term
@@ -165,7 +174,7 @@
                         impact through tailored solutions and strategic consulting.</p>
                 </div>
                 <div class="about__items">
-                    <div class="about__item">
+                    <div class="about__item reveal" style="--reveal-delay: 0.05s">
                         <div class="about__item-icon">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="1.5"
@@ -181,7 +190,7 @@
                             bridging the gap between academia and industry, creating sustainable ecosystems that drive
                             long-term success and transformation.</p>
                     </div>
-                    <div class="about__item">
+                    <div class="about__item reveal" style="--reveal-delay: 0.12s">
                         <div class="about__item-icon">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -199,7 +208,7 @@
                             businesses that seamlessly align with industry needs, fostering innovation, talent
                             development, and sustainable growth.</p>
                     </div>
-                    <div class="about__item">
+                    <div class="about__item reveal" style="--reveal-delay: 0.19s">
                         <div class="about__item-icon">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="1.5"
@@ -219,37 +228,43 @@
     <!-- Why Choose Us -->
     <section class="why-choose-us" id="why-choose-us">
         <div class="container">
-            <div class="section__header">
+            <div class="section__header reveal">
                 <h2 class="section__title">Why Choose Us</h2>
                 <p class="section__subtitle">What sets UniqShift Ventures apart</p>
             </div>
             <div class="features__list">
-                <div class="feature__item">
+                <div class="feature__item reveal" style="--reveal-delay: 0.05s">
+                    <span class="feature__index">01</span>
                     <h3 class="feature__title">Industry Expertise</h3>
                     <p class="feature__description">Deep understanding of industry dynamics and requirements, ensuring
                         solutions that align perfectly with market needs.</p>
                 </div>
-                <div class="feature__item">
+                <div class="feature__item reveal" style="--reveal-delay: 0.1s">
+                    <span class="feature__index">02</span>
                     <h3 class="feature__title">Customized Systems</h3>
                     <p class="feature__description">Tailored solutions designed specifically for your institution or
                         business, addressing unique challenges and opportunities.</p>
                 </div>
-                <div class="feature__item">
+                <div class="feature__item reveal" style="--reveal-delay: 0.15s">
+                    <span class="feature__index">03</span>
                     <h3 class="feature__title">Organic Industry Connections</h3>
                     <p class="feature__description">Access to a network of industry leaders and organizations built
                         through years of trusted relationships.</p>
                 </div>
-                <div class="feature__item">
+                <div class="feature__item reveal" style="--reveal-delay: 0.2s">
+                    <span class="feature__index">04</span>
                     <h3 class="feature__title">Industry Alignment</h3>
                     <p class="feature__description">Strategic alignment with current and future industry trends,
                         ensuring your institution stays ahead of the curve.</p>
                 </div>
-                <div class="feature__item">
+                <div class="feature__item reveal" style="--reveal-delay: 0.25s">
+                    <span class="feature__index">05</span>
                     <h3 class="feature__title">Long-term Impact</h3>
                     <p class="feature__description">Focus on sustainable solutions that create lasting value and
                         measurable outcomes for years to come.</p>
                 </div>
-                <div class="feature__item">
+                <div class="feature__item reveal" style="--reveal-delay: 0.3s">
+                    <span class="feature__index">06</span>
                     <h3 class="feature__title">Proven Results</h3>
                     <p class="feature__description">Track record of successful transformations with measurable outcomes
                         and satisfied clients across diverse sectors.</p>
@@ -261,39 +276,39 @@
     <!-- Our Services -->
     <section class="services" id="services">
         <div class="container">
-            <div class="section__header">
+            <div class="section__header reveal">
                 <h2 class="section__title">Our Services</h2>
                 <p class="section__subtitle">Comprehensive solutions for institutional and business transformation</p>
             </div>
             <div class="services__list">
-                <div class="service__item">
+                <div class="service__item reveal" style="--reveal-delay: 0.05s">
                     <h3 class="service__title">Transformative Skilling & Placement Strategies</h3>
                     <p class="service__description">Develop comprehensive skilling programs and strategic placement
                         initiatives that bridge the gap between education and employment, ensuring students are
                         industry-ready.</p>
                 </div>
-                <div class="service__item">
+                <div class="service__item reveal" style="--reveal-delay: 0.1s">
                     <h3 class="service__title">Privileged Access to Niche Sectors</h3>
                     <p class="service__description">Gain exclusive access to specialized industry sectors and emerging
                         markets through our established network of partnerships and connections.</p>
                 </div>
-                <div class="service__item">
+                <div class="service__item reveal" style="--reveal-delay: 0.15s">
                     <h3 class="service__title">Structured Campus Hiring for Businesses</h3>
                     <p class="service__description">Streamlined campus recruitment solutions that connect businesses
                         with top talent from educational institutions, ensuring quality hires and efficient processes.
                     </p>
                 </div>
-                <div class="service__item">
+                <div class="service__item reveal" style="--reveal-delay: 0.2s">
                     <h3 class="service__title">Personalized Career Mentoring</h3>
                     <p class="service__description">One-on-one career guidance and mentoring programs tailored to
                         individual aspirations, helping professionals navigate their career paths with confidence.</p>
                 </div>
-                <div class="service__item">
+                <div class="service__item reveal" style="--reveal-delay: 0.25s">
                     <h3 class="service__title">Strategic Consulting & Advisory</h3>
                     <p class="service__description">Expert guidance on institutional transformation, strategic planning,
                         and building sustainable ecosystems aligned with industry standards.</p>
                 </div>
-                <div class="service__item">
+                <div class="service__item reveal" style="--reveal-delay: 0.3s">
                     <h3 class="service__title">Industry-Academia Bridge Programs</h3>
                     <p class="service__description">Comprehensive programs that seamlessly connect educational
                         institutions with industry partners, fostering collaboration and knowledge exchange.</p>
@@ -307,12 +322,12 @@
         <div class="container">
             <div class="founder__content">
                 <div class="founder__image">
-                    <div class="founder__image-wrapper">
+                    <div class="founder__image-wrapper reveal">
                         <img src="src/g-dp-tedx.png" alt="Ganesh Thirunavukkarasu, Founder of UniqShift Ventures"
                             class="founder__photo" loading="lazy">
                     </div>
                 </div>
-                <div class="founder__info">
+                <div class="founder__info reveal" style="--reveal-delay: 0.12s">
                     <div class="founder__divider"></div>
                     <h2 class="founder__name">Ganesh Thirunavukkarasu</h2>
                     <p class="founder__bio">
@@ -342,14 +357,15 @@
     <!-- Contact Us -->
     <section class="contact" id="contact">
         <div class="container">
-            <div class="section__header">
+            <div class="section__header reveal">
                 <h2 class="section__title">Contact Us</h2>
                 <p class="section__subtitle">Get in touch to discuss how we can help transform your institution or
                     business</p>
             </div>
             <div class="contact__content">
-                <div class="contact__form-wrapper">
-                    <form class="contact__form" id="contact-form">
+                <div class="contact__form-wrapper reveal">
+                    <form class="contact__form" id="contact-form" novalidate>
+                        <p class="form__error" id="form-error" hidden></p>
                         <div class="form__group">
                             <input type="text" id="name" name="name" class="form__input" placeholder="Name *" required>
                         </div>
@@ -381,10 +397,10 @@
                             <textarea id="message" name="message" class="form__input form__textarea" rows="5"
                                 placeholder="Message *" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+                        <button type="submit" class="btn btn--primary btn--full" id="form-submit">Send Message</button>
                     </form>
                 </div>
-                <div class="contact__info">
+                <div class="contact__info reveal" style="--reveal-delay: 0.1s">
                     <div class="contact__details">
                         <div class="contact__detail-item">
                             <svg class="contact__icon" viewBox="0 0 24 24" fill="none"
@@ -438,6 +454,22 @@
         </div>
     </section>
 
+    <!-- Privacy -->
+    <section class="privacy" id="privacy">
+        <div class="container">
+            <div class="section__header reveal">
+                <h2 class="section__title">Privacy Policy</h2>
+                <p class="section__subtitle">How we handle information you share with us</p>
+            </div>
+            <div class="privacy__content reveal">
+                <p>UniqShift Ventures respects your privacy. Information submitted through our contact form is used only
+                    to respond to your inquiry and to discuss how we may support your institution or business. We do not
+                    sell personal data to third parties. For privacy questions, contact us at
+                    <a href="mailto:info@uniqshift.com">info@uniqshift.com</a>.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -454,9 +486,7 @@
                     <ul class="footer__menu">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About Us</a></li>
-                        <!-- <li><a href="#why-choose-us">Why Choose Us</a></li> -->
                         <li><a href="#services">Services</a></li>
-                        <!-- <li><a href="#founder">Founder</a></li> -->
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -469,8 +499,13 @@
                 </div>
             </div>
             <div class="footer__bottom">
-                <p>&copy; 2024 UniqShift Ventures. All rights reserved.</p>
-                <p><a href="#privacy" class="footer__link">Privacy Policy</a></p>
+                <p>&copy; <span id="footer-year">2026</span> UniqShift Ventures. All rights reserved.</p>
+                <div class="footer__bottom-actions">
+                    <a href="#privacy" class="footer__link">Privacy Policy</a>
+                    <button type="button" class="footer__theme-btn" id="theme-toggle" aria-label="Switch to light mode">
+                        Light mode
+                    </button>
+                </div>
             </div>
         </div>
     </footer>
