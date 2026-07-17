@@ -226,19 +226,9 @@ if (contactForm) {
 
         const formData = new FormData(contactForm);
         const data = Object.fromEntries(formData);
-        const topicInput = document.getElementById('topic');
-        if (topicInput && topicInput.value && data.message) {
-            data.message = `[${topicInput.value}] ${data.message}`;
-        }
 
-        if (!data.name || !data.email || !data.institution || !data.message) {
+        if (!data.name || !data.institution || !data.message) {
             showFormError('Please fill in all required fields.');
-            return;
-        }
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(data.email)) {
-            showFormError('Please enter a valid email address.');
             return;
         }
 
@@ -246,12 +236,7 @@ if (contactForm) {
         formSubmit.textContent = 'Message Sent!';
         formSubmit.classList.add('btn--success');
         formSubmit.disabled = true;
-
-        const activeTopic = topicInput ? topicInput.value : '';
         contactForm.reset();
-        if (topicInput) {
-            topicInput.value = activeTopic;
-        }
 
         setTimeout(() => {
             formSubmit.textContent = originalText;
@@ -263,31 +248,6 @@ if (contactForm) {
         }, 1800);
     });
 }
-
-// ===== Contact intent chips =====
-const topicInput = document.getElementById('topic');
-const intentChips = document.querySelectorAll('.contact__intent');
-
-intentChips.forEach((chip) => {
-    chip.addEventListener('click', () => {
-        const topic = chip.getAttribute('data-topic') || '';
-        const wasActive = chip.classList.contains('is-active');
-
-        intentChips.forEach((c) => {
-            c.classList.remove('is-active');
-            c.setAttribute('aria-pressed', 'false');
-        });
-
-        if (wasActive) {
-            if (topicInput) topicInput.value = '';
-            return;
-        }
-
-        chip.classList.add('is-active');
-        chip.setAttribute('aria-pressed', 'true');
-        if (topicInput) topicInput.value = topic;
-    });
-});
 
 // ===== Footer accordion (mobile) =====
 const footerAccordions = document.querySelectorAll('.footer__accordion');
