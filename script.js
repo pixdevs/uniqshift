@@ -1041,44 +1041,54 @@ function renderPartners(data) {
 
 
 function createImpactStat(stat) {
-
     const item = document.createElement('li');
-
     item.className = 'impact__stat reveal';
 
-    item.innerHTML = `
-        <span class="impact__stat-value">${stat.value}</span>
-        <span class="impact__stat-label">${stat.label}</span>
-    `;
+    const value = document.createElement('span');
+    value.className = 'impact__stat-value';
+    value.textContent = stat.value || '';
 
+    const label = document.createElement('span');
+    label.className = 'impact__stat-label';
+    label.textContent = stat.label || '';
+
+    item.appendChild(value);
+    item.appendChild(label);
     return item;
-
 }
 
-
-
 function createImpactSlide(slide, index, total) {
-
     const item = document.createElement('li');
-
     item.className = 'carousel__slide';
-
     item.setAttribute('aria-roledescription', 'slide');
-
     item.setAttribute('aria-label', `${index + 1} of ${total}`);
 
-    item.innerHTML = `
-        <figure class="carousel__figure">
-            <img src="${slide.image}" alt="${slide.alt}" class="carousel__image" loading="lazy">
-            <figcaption class="carousel__caption">
-                <span class="carousel__caption-title">${slide.caption}</span>
-                <span class="carousel__caption-detail">${slide.detail || ''}</span>
-            </figcaption>
-        </figure>
-    `;
+    const figure = document.createElement('figure');
+    figure.className = 'carousel__figure';
 
+    const image = document.createElement('img');
+    image.className = 'carousel__image';
+    image.src = slide.image || '';
+    image.alt = slide.alt || '';
+    image.loading = 'lazy';
+
+    const caption = document.createElement('figcaption');
+    caption.className = 'carousel__caption';
+
+    const title = document.createElement('span');
+    title.className = 'carousel__caption-title';
+    title.textContent = slide.caption || '';
+
+    const detail = document.createElement('span');
+    detail.className = 'carousel__caption-detail';
+    detail.textContent = slide.detail || '';
+
+    caption.appendChild(title);
+    caption.appendChild(detail);
+    figure.appendChild(image);
+    figure.appendChild(caption);
+    item.appendChild(figure);
     return item;
-
 }
 
 
