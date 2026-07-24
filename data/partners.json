@@ -1,0 +1,75 @@
+{
+  "title": "Trusted By",
+  "subtitle": "Institutions and businesses we partner with",
+  "items": [
+    {
+      "id": "ssei",
+      "name": "Sri Shanmuga Educational Institutions",
+      "logo": "src/partners/ssei.png",
+      "type": "institution",
+      "quote": "Aligned campus readiness with industry expectations.",
+      "about": "Sri Shanmuga Educational Institutions builds future-ready academic ecosystems with a focus on industry-aligned learning, campus readiness, and sustained student outcomes.",
+      "testimonials": [
+        {
+          "quote": "Working with UniqShift helped us move beyond reactive placement cycles and build a structured, industry-aligned readiness system for our students and faculty leadership.",
+          "person": "Academic Leadership",
+          "role": "Partner Institution"
+        }
+      ],
+      "url": null
+    },
+    {
+      "id": "pec",
+      "name": "Prathyusha Engineering College",
+      "logo": "src/partners/pec.png",
+      "type": "institution",
+      "quote": "Stronger industry bridges for student outcomes.",
+      "about": "Prathyusha Engineering College partners with industry to strengthen placement pathways, curriculum relevance, and graduate preparedness for real hiring expectations.",
+      "testimonials": [
+        {
+          "quote": "UniqShift strengthened our industry connections and helped us design programs that prepare graduates for real hiring expectations, not just academic milestones.",
+          "person": "Placement & Industry Relations",
+          "role": "Engineering College Partner"
+        }
+      ],
+      "url": null
+    },
+    {
+      "id": "sjce",
+      "name": "St Joseph College of Engineering",
+      "logo": "src/partners/sjce.png",
+      "type": "institution",
+      "quote": "Structured mentoring that scales across cohorts.",
+      "about": "St Joseph College of Engineering is a leading engineering institution focused on industry-aligned learning, mentoring frameworks, and graduate readiness at scale.",
+      "testimonials": [
+        {
+          "quote": "Their mentoring frameworks and strategic advisory support helped us scale career readiness across cohorts while staying closely connected to industry needs.",
+          "person": "Career Development Team",
+          "role": "Academic Partner"
+        },
+        {
+          "quote": "UniqShift brought structure to our placement advisory conversations and helped us align campus initiatives with employer expectations.",
+          "person": "Placement Office",
+          "role": "Institution Leadership"
+        }
+      ],
+      "url": null
+    },
+    {
+      "id": "ag",
+      "name": "Acadetours Global",
+      "logo": "src/partners/acadetours.png",
+      "type": "business",
+      "quote": "Clearer pathways from learning to opportunity.",
+      "about": "Acadetours Global connects academic ecosystems with global learning opportunities, helping institutions and learners navigate clearer pathways from education to career growth.",
+      "testimonials": [
+        {
+          "quote": "Partnering with UniqShift gave us sharper go-to-market clarity and a more intentional bridge between academic ecosystems and global learning opportunities.",
+          "person": "Leadership Team",
+          "role": "Business Partner"
+        }
+      ],
+      "url": null
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "title": "Wall of Fame",
+  "subtitle": "TEDx stages, convocations, and chief guest engagements",
+  "stats": [
+    {
+      "value": "TEDx",
+      "label": "High-impact talks"
+    },
+    {
+      "value": "150+",
+      "label": "Institutions engaged"
+    },
+    {
+      "value": "Chief Guest",
+      "label": "Convocations and events"
+    }
+  ],
+  "slides": [
+    {
+      "id": "slide-tedx",
+      "image": "src/g-tedx.jpeg",
+      "alt": "Ganesh delivering a TEDx talk on stage",
+      "caption": "The Next Big Thing",
+      "detail": "TEDx talk on \"The Next Big Thing,\" spotlighting future-focused ideas and high-impact public thought leadership."
+    },
+    {
+      "id": "slide-stage-portrait",
+      "image": "src/g-stage-portrait.jpeg",
+      "alt": "Ganesh at a public speaking engagement",
+      "caption": "Chief guest presence",
+      "detail": "Facilitating conversations, leadership events, and institutional gatherings."
+    },
+    {
+      "id": "slide-portrait-tedx",
+      "image": "src/g-portrait-tedx.jpeg",
+      "alt": "Ganesh in a keynote and public leadership setting",
+      "caption": "Public figure and mentor",
+      "detail": "A visible voice across convocations, mentoring forums, and academic platforms."
+    }
+  ]
+}

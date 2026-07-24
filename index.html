@@ -27,6 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dynamic-sections.css">
     <link rel="icon" type="image/png" href="src/favico.png">
     <link rel="apple-touch-icon" href="src/favico.png">
     <link rel="shortcut icon" href="src/favico.png">
@@ -57,9 +58,15 @@
                 <li class="nav__item">
                     <a href="#services" class="nav__link">Services</a>
                 </li>
+                <!-- <li class="nav__item">
+                    <a href="#partners" class="nav__link">Partners</a>
+                </li> -->
                 <li class="nav__item">
                     <a href="#founder" class="nav__link">Founder</a>
                 </li>
+                <!-- <li class="nav__item">
+                    <a href="#impact" class="nav__link">Impact</a>
+                </li> -->
                 <li class="nav__item">
                     <a href="#contact" class="nav__link">Contact</a>
                 </li>
@@ -288,6 +295,43 @@
         </div>
     </section>
 
+    <!-- Partners -->
+    <section class="partners" id="partners">
+        <div class="container">
+            <div class="section__header reveal">
+                <h2 class="section__title" data-partners-title>Trusted By</h2>
+                <p class="section__subtitle" data-partners-subtitle>Institutions and businesses we partner with</p>
+            </div>
+            <ul class="partners__grid" id="partners-grid" aria-live="polite"></ul>
+        </div>
+    </section>
+
+    <div class="partner-drawer" id="partner-drawer" hidden>
+        <div class="partner-drawer__overlay" id="partner-drawer-overlay" tabindex="-1"></div>
+        <aside class="partner-drawer__panel" id="partner-drawer-panel" role="dialog" aria-modal="true"
+            aria-labelledby="partner-drawer-name" tabindex="-1">
+            <button type="button" class="partner-drawer__close" id="partner-drawer-close"
+                aria-label="Close partner details">&times;</button>
+            <div class="partner-drawer__header">
+                <div class="partner-drawer__identity">
+                    <span class="partner-drawer__chip" id="partner-drawer-chip"></span>
+                    <h3 class="partner-drawer__name" id="partner-drawer-name"></h3>
+                </div>
+                <img class="partner-drawer__logo" id="partner-drawer-logo" src="" alt="" hidden>
+            </div>
+            <section class="partner-drawer__section" id="partner-drawer-about-section" hidden>
+                <h4 class="partner-drawer__section-label">About</h4>
+                <p class="partner-drawer__about" id="partner-drawer-about"></p>
+            </section>
+            <section class="partner-drawer__section" id="partner-drawer-testimonials-section" hidden>
+                <h4 class="partner-drawer__section-label">Testimonials</h4>
+                <ul class="partner-drawer__testimonials" id="partner-drawer-testimonials"></ul>
+            </section>
+            <a class="partner-drawer__link btn btn--primary" id="partner-drawer-link" href="#" target="_blank"
+                rel="noopener noreferrer" hidden>Visit website</a>
+        </aside>
+    </div>
+
     <!-- About the Founder -->
     <section class="founder" id="founder">
         <div class="container">
@@ -320,6 +364,33 @@
                         Advisory Boards, contributing to policy, curriculum, and institutional strategy, while also
                         mentoring young graduates to strengthen their industry readiness.
                     </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wall of Fame -->
+    <section class="impact" id="impact">
+        <div class="container">
+            <div class="section__header reveal">
+                <h2 class="section__title" data-impact-title>Wall of Fame</h2>
+                <p class="section__subtitle" data-impact-subtitle>TEDx stages, convocations, and chief guest engagements</p>
+            </div>
+            <ul class="impact__stats" id="impact-stats" aria-label="Founder highlights"></ul>
+            <div class="carousel reveal" id="fame-carousel" aria-roledescription="carousel"
+                aria-label="Founder highlights">
+                <div class="carousel__viewport">
+                    <ul class="carousel__track" id="fame-carousel-track"></ul>
+                </div>
+                <div class="carousel__controls">
+                    <button type="button" class="carousel__btn carousel__btn--prev" aria-label="Previous slide">
+                        <span aria-hidden="true">&#8592;</span>
+                    </button>
+                    <div class="carousel__dots" id="fame-carousel-dots" role="tablist"
+                        aria-label="Wall of Fame slides"></div>
+                    <button type="button" class="carousel__btn carousel__btn--next" aria-label="Next slide">
+                        <span aria-hidden="true">&#8594;</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -490,7 +561,9 @@
                             <li><a href="#home">Home</a></li>
                             <li><a href="#about">About Us</a></li>
                             <li><a href="#services">Services</a></li>
+                            <li><a href="#partners">Partners</a></li>
                             <li><a href="#founder">Founder</a></li>
+                            <li><a href="#impact">Impact</a></li>
                             <li><a href="#contact">Contact</a></li>
                         </ul>
                     </div>
