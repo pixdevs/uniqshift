@@ -967,15 +967,44 @@ function initPartnerDrawer() {
     document.addEventListener('keydown', partnerDrawerKeyHandler);
 }
 
-function createPartnerCard(item) {
+function getPartnerInitials(name) {
+    const raw = (name || '').trim();
+    if (!raw) return '?';
+
+    const stopWords = new Set(['of', 'and', 'the', '&']);
+    const words = raw.split(/\s+/).filter((word) => {
+        const normalized = word.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+        return normalized && !stopWords.has(normalized);
+    });
+
+    if (words.length) {
+        return words
+            .slice(0, 3)
+            .map((word) => word.replace(/[^a-zA-Z0-9]/g, '').charAt(0).toUpperCase())
+            .join('');
+    }
+
+    const alnum = raw.replace(/[^a-zA-Z0-9]/g, '');
+    return (alnum.slice(0, 3) || '?').toUpperCase();
+}
+
+function createPartnerCard(item, options = {}) {
+    const { isClone = false } = options;
     const listItem = document.createElement('li');
-    listItem.className = 'partners__item reveal';
+    listItem.className = 'partners__item';
+    if (isClone) {
+        listItem.setAttribute('data-marquee-clone', '');
+        listItem.setAttribute('aria-hidden', 'true');
+    }
 
     const card = document.createElement('button');
     card.type = 'button';
     card.className = 'partners__card';
     card.setAttribute('aria-haspopup', 'dialog');
     card.setAttribute('aria-label', `Open details for ${item.name}`);
+    if (isClone) {
+        card.tabIndex = -1;
+    }
 
     if (item.logo) {
         const logo = document.createElement('img');
@@ -985,24 +1014,11 @@ function createPartnerCard(item) {
         logo.loading = 'lazy';
         card.appendChild(logo);
     } else {
-        const placeholder = document.createElement('div');
-        placeholder.className = 'partners__placeholder';
-        placeholder.setAttribute('aria-hidden', 'true');
-
-        const name = document.createElement('span');
-        name.className = 'partners__placeholder-name';
-        name.textContent = item.name || '';
-        placeholder.appendChild(name);
-
-        const engagementText = (item.engagement || '').trim();
-        if (engagementText) {
-            const engagement = document.createElement('span');
-            engagement.className = 'partners__placeholder-engagement';
-            engagement.textContent = engagementText;
-            placeholder.appendChild(engagement);
-        }
-
-        card.appendChild(placeholder);
+        const initials = document.createElement('span');
+        initials.className = 'partners__initials';
+        initials.setAttribute('aria-hidden', 'true');
+        initials.textContent = getPartnerInitials(item.name);
+        card.appendChild(initials);
     }
 
     card.addEventListener('click', () => {
@@ -1016,9 +1032,10 @@ function createPartnerCard(item) {
 function renderPartners(data) {
     const title = document.querySelector('[data-partners-title]');
     const subtitle = document.querySelector('[data-partners-subtitle]');
-    const grid = document.getElementById('partners-grid');
+    const marquee = document.getElementById('partners-marquee');
+    const track = document.getElementById('partners-track');
 
-    if (!grid) return;
+    if (!track) return;
 
     initPartnerDrawer();
 
@@ -1030,13 +1047,23 @@ function renderPartners(data) {
         subtitle.textContent = data.subtitle;
     }
 
-    grid.replaceChildren();
+    const items = data.items || [];
+    track.replaceChildren();
 
-    (data.items || []).forEach((item) => {
-        grid.appendChild(createPartnerCard(item));
+    items.forEach((item) => {
+        track.appendChild(createPartnerCard(item));
     });
 
-    observeRevealElements(grid.parentElement || grid);
+    items.forEach((item) => {
+        track.appendChild(createPartnerCard(item, { isClone: true }));
+    });
+
+    const durationSeconds = Math.max(24, items.length * 3.2);
+    if (marquee) {
+        marquee.style.setProperty('--partners-duration', `${durationSeconds}s`);
+    }
+
+    observeRevealElements(document.getElementById('partners'));
 }
 
 
