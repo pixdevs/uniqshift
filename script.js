@@ -778,6 +778,7 @@ function getPartnerDrawerEls() {
         chip: document.getElementById('partner-drawer-chip'),
         logo: document.getElementById('partner-drawer-logo'),
         name: document.getElementById('partner-drawer-name'),
+        engagement: document.getElementById('partner-drawer-engagement'),
         aboutSection: document.getElementById('partner-drawer-about-section'),
         about: document.getElementById('partner-drawer-about'),
         testimonialsSection: document.getElementById('partner-drawer-testimonials-section'),
@@ -865,6 +866,17 @@ function openPartnerDrawer(item, triggerEl) {
 
     els.chip.textContent = formatPartnerType(item.type);
     els.name.textContent = item.name || '';
+
+    const engagementText = (item.engagement || '').trim();
+    if (els.engagement) {
+        if (engagementText) {
+            els.engagement.textContent = engagementText;
+            els.engagement.hidden = false;
+        } else {
+            els.engagement.textContent = '';
+            els.engagement.hidden = true;
+        }
+    }
 
     if (item.logo) {
         els.logo.hidden = false;
@@ -965,44 +977,33 @@ function createPartnerCard(item) {
     card.setAttribute('aria-haspopup', 'dialog');
     card.setAttribute('aria-label', `Open details for ${item.name}`);
 
-    const top = document.createElement('div');
-    top.className = 'partners__card-top';
-
-    const copy = document.createElement('div');
-    copy.className = 'partners__card-copy';
-
-    const chip = document.createElement('span');
-    chip.className = 'partners__chip';
-    chip.textContent = formatPartnerType(item.type);
-    copy.appendChild(chip);
-
-    const name = document.createElement('h3');
-    name.className = 'partners__name';
-    name.textContent = item.name || '';
-    copy.appendChild(name);
-
-    const quote = document.createElement('p');
-    quote.className = 'partners__quote';
-    quote.textContent = item.quote || '';
-    copy.appendChild(quote);
-
-    top.appendChild(copy);
-
-    const logoWrap = document.createElement('div');
-    logoWrap.className = 'partners__logo-wrap';
-    logoWrap.setAttribute('aria-hidden', 'true');
-
     if (item.logo) {
         const logo = document.createElement('img');
         logo.className = 'partners__logo';
         logo.src = item.logo;
         logo.alt = '';
         logo.loading = 'lazy';
-        logoWrap.appendChild(logo);
-    }
+        card.appendChild(logo);
+    } else {
+        const placeholder = document.createElement('div');
+        placeholder.className = 'partners__placeholder';
+        placeholder.setAttribute('aria-hidden', 'true');
 
-    top.appendChild(logoWrap);
-    card.appendChild(top);
+        const name = document.createElement('span');
+        name.className = 'partners__placeholder-name';
+        name.textContent = item.name || '';
+        placeholder.appendChild(name);
+
+        const engagementText = (item.engagement || '').trim();
+        if (engagementText) {
+            const engagement = document.createElement('span');
+            engagement.className = 'partners__placeholder-engagement';
+            engagement.textContent = engagementText;
+            placeholder.appendChild(engagement);
+        }
+
+        card.appendChild(placeholder);
+    }
 
     card.addEventListener('click', () => {
         openPartnerDrawer(item, card);

@@ -3,26 +3,11 @@
   "subtitle": "Institutions and businesses we partner with",
   "items": [
     {
-      "id": "ssei",
-      "name": "Sri Shanmuga Educational Institutions",
-      "logo": "src/partners/ssei.png",
-      "type": "institution",
-      "quote": "Aligned campus readiness with industry expectations.",
-      "about": "Sri Shanmuga Educational Institutions builds future-ready academic ecosystems with a focus on industry-aligned learning, campus readiness, and sustained student outcomes.",
-      "testimonials": [
-        {
-          "quote": "Working with UniqShift helped us move beyond reactive placement cycles and build a structured, industry-aligned readiness system for our students and faculty leadership.",
-          "person": "Academic Leadership",
-          "role": "Partner Institution"
-        }
-      ],
-      "url": null
-    },
-    {
       "id": "pec",
       "name": "Prathyusha Engineering College",
       "logo": "src/partners/pec.png",
       "type": "institution",
+      "engagement": null,
       "quote": "Stronger industry bridges for student outcomes.",
       "about": "Prathyusha Engineering College partners with industry to strengthen placement pathways, curriculum relevance, and graduate preparedness for real hiring expectations.",
       "testimonials": [
@@ -35,12 +20,30 @@
       "url": null
     },
     {
+      "id": "sscet",
+      "name": "Sri Shanmugha College of Engineering and Technology",
+      "logo": null,
+      "type": "institution",
+      "engagement": null,
+      "quote": "Aligned campus readiness with industry expectations.",
+      "about": "Sri Shanmugha College of Engineering and Technology builds future-ready academic ecosystems with a focus on industry-aligned learning, campus readiness, and sustained student outcomes.",
+      "testimonials": [
+        {
+          "quote": "Working with UniqShift helped us move beyond reactive placement cycles and build a structured, industry-aligned readiness system for our students and faculty leadership.",
+          "person": "Academic Leadership",
+          "role": "Partner Institution"
+        }
+      ],
+      "url": null
+    },
+    {
       "id": "sjce",
-      "name": "St Joseph College of Engineering",
+      "name": "St. Joseph's College of Engineering",
       "logo": "src/partners/sjce.png",
       "type": "institution",
+      "engagement": null,
       "quote": "Structured mentoring that scales across cohorts.",
-      "about": "St Joseph College of Engineering is a leading engineering institution focused on industry-aligned learning, mentoring frameworks, and graduate readiness at scale.",
+      "about": "St. Joseph's College of Engineering is a leading engineering institution focused on industry-aligned learning, mentoring frameworks, and graduate readiness at scale.",
       "testimonials": [
         {
           "quote": "Their mentoring frameworks and strategic advisory support helped us scale career readiness across cohorts while staying closely connected to industry needs.",
@@ -56,10 +59,96 @@
       "url": null
     },
     {
+      "id": "srm",
+      "name": "SRM Institute of Science and Technology",
+      "logo": null,
+      "type": "institution",
+      "engagement": "Professor of Practice",
+      "quote": "Practice-led insight for future-ready talent.",
+      "about": "SRM Institute of Science and Technology engages industry practitioners to strengthen academic–industry alignment, curriculum relevance, and graduate readiness.",
+      "testimonials": [
+        {
+          "quote": "UniqShift brings practitioner depth into academic conversations and helps connect classroom learning with real hiring and industry expectations.",
+          "person": "Academic Leadership",
+          "role": "Institution Partner"
+        }
+      ],
+      "url": null
+    },
+    {
+      "id": "mar-ephraem",
+      "name": "Mar Ephraem College of Engineering & Technology",
+      "logo": null,
+      "type": "institution",
+      "engagement": null,
+      "quote": "Industry-aligned pathways for engineering graduates.",
+      "about": "Mar Ephraem College of Engineering & Technology focuses on building industry-ready graduates through structured academic and career development initiatives.",
+      "testimonials": [
+        {
+          "quote": "Collaboration with UniqShift helped us sharpen placement readiness and strengthen industry-facing academic programs.",
+          "person": "Placement Cell",
+          "role": "Engineering College Partner"
+        }
+      ],
+      "url": null
+    },
+    {
+      "id": "egsp",
+      "name": "EGS Pillay Engineering College",
+      "logo": null,
+      "type": "institution",
+      "engagement": null,
+      "quote": "Clearer bridges from campus to career.",
+      "about": "EGS Pillay Engineering College partners on talent readiness and industry alignment to help students move confidently from campus into careers.",
+      "testimonials": [
+        {
+          "quote": "UniqShift supported us in structuring industry engagement and improving how we prepare students for recruitment outcomes.",
+          "person": "Training & Placement",
+          "role": "Institution Partner"
+        }
+      ],
+      "url": null
+    },
+    {
+      "id": "sxcce",
+      "name": "St. Xavier's Catholic College of Engineering",
+      "logo": null,
+      "type": "institution",
+      "engagement": "Member of the Academic Council",
+      "quote": "Governance insight that strengthens academic strategy.",
+      "about": "St. Xavier's Catholic College of Engineering engages academic council perspectives to guide curriculum, quality, and institutional strategy.",
+      "testimonials": [
+        {
+          "quote": "UniqShift contributes practical industry perspective to academic council discussions and institutional planning.",
+          "person": "Academic Council",
+          "role": "Institution Partner"
+        }
+      ],
+      "url": null
+    },
+    {
+      "id": "ritaa",
+      "name": "Ramco Institute of Technology Alumni Association (RITAA)",
+      "logo": null,
+      "type": "institution",
+      "engagement": "Strategic Advisor",
+      "quote": "Alumni networks guided by strategic clarity.",
+      "about": "RITAA connects alumni, institution, and industry through strategic advisory that strengthens long-term engagement and opportunity pathways.",
+      "testimonials": [
+        {
+          "quote": "UniqShift helped us think more strategically about alumni engagement and how it connects to industry and institutional outcomes.",
+          "person": "Association Leadership",
+          "role": "Strategic Partner"
+        }
+      ],
+      "url": null
+    },
+    {
       "id": "ag",
       "name": "Acadetours Global",
       "logo": "src/partners/acadetours.png",
       "type": "business",
+      "engagement": null,
       "quote": "Clearer pathways from learning to opportunity.",
       "about": "Acadetours Global connects academic ecosystems with global learning opportunities, helping institutions and learners navigate clearer pathways from education to career growth.",
       "testimonials": [
