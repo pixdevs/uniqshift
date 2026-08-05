@@ -1029,11 +1029,27 @@ function createPartnerCard(item, options = {}) {
     return listItem;
 }
 
+function fillPartnerTrack(track, items) {
+    if (!track) return;
+
+    track.replaceChildren();
+
+    items.forEach((item) => {
+        track.appendChild(createPartnerCard(item));
+    });
+
+    items.forEach((item) => {
+        track.appendChild(createPartnerCard(item, { isClone: true }));
+    });
+
+    track.style.setProperty('--partners-duration', `${Math.max(22, items.length * 4.5)}s`);
+}
+
 function renderPartners(data) {
     const title = document.querySelector('[data-partners-title]');
     const subtitle = document.querySelector('[data-partners-subtitle]');
-    const marquee = document.getElementById('partners-marquee');
     const track = document.getElementById('partners-track');
+    const trackAlt = document.getElementById('partners-track-alt');
 
     if (!track) return;
 
@@ -1048,19 +1064,19 @@ function renderPartners(data) {
     }
 
     const items = data.items || [];
-    track.replaceChildren();
+    const topRow = items.filter((_, index) => index % 2 === 0);
+    const bottomRow = items.filter((_, index) => index % 2 === 1);
 
-    items.forEach((item) => {
-        track.appendChild(createPartnerCard(item));
-    });
+    fillPartnerTrack(track, topRow.length ? topRow : items);
 
-    items.forEach((item) => {
-        track.appendChild(createPartnerCard(item, { isClone: true }));
-    });
-
-    const durationSeconds = Math.max(24, items.length * 3.2);
-    if (marquee) {
-        marquee.style.setProperty('--partners-duration', `${durationSeconds}s`);
+    if (trackAlt) {
+        if (bottomRow.length) {
+            trackAlt.hidden = false;
+            fillPartnerTrack(trackAlt, bottomRow);
+        } else {
+            trackAlt.hidden = true;
+            trackAlt.replaceChildren();
+        }
     }
 
     observeRevealElements(document.getElementById('partners'));
