@@ -1006,20 +1006,50 @@ function createPartnerCard(item, options = {}) {
         card.tabIndex = -1;
     }
 
+    const plate = document.createElement('span');
+    plate.className = 'partners__plate';
+    plate.setAttribute('aria-hidden', 'true');
+
     if (item.logo) {
         const logo = document.createElement('img');
         logo.className = 'partners__logo';
         logo.src = item.logo;
         logo.alt = '';
         logo.loading = 'lazy';
-        card.appendChild(logo);
+        plate.appendChild(logo);
     } else {
         const initials = document.createElement('span');
         initials.className = 'partners__initials';
-        initials.setAttribute('aria-hidden', 'true');
         initials.textContent = getPartnerInitials(item.name);
-        card.appendChild(initials);
+        plate.appendChild(initials);
     }
+
+    const meta = document.createElement('span');
+    meta.className = 'partners__meta';
+
+    const name = document.createElement('span');
+    name.className = 'partners__name';
+    name.textContent = item.name || '';
+    meta.appendChild(name);
+
+    const engagementText = (item.engagement || '').trim();
+    if (engagementText) {
+        const engagement = document.createElement('span');
+        engagement.className = 'partners__engagement';
+        engagement.textContent = engagementText;
+        meta.appendChild(engagement);
+    }
+
+    const descriptionText = (item.quote || item.about || '').trim();
+    if (descriptionText) {
+        const description = document.createElement('span');
+        description.className = 'partners__description';
+        description.textContent = descriptionText;
+        meta.appendChild(description);
+    }
+
+    card.appendChild(plate);
+    card.appendChild(meta);
 
     card.addEventListener('click', () => {
         openPartnerDrawer(item, card);
@@ -1029,20 +1059,43 @@ function createPartnerCard(item, options = {}) {
     return listItem;
 }
 
-function fillPartnerTrack(track, items) {
-    if (!track) return;
+const PARTNER_MARQUEE_SPEED = 38;
+let partnerMarqueeRows = [];
+let partnerMarqueeResizeHandler = null;
+
+function appendPartnerSet(track, items, isClone) {
+    items.forEach((item) => {
+        track.appendChild(createPartnerCard(item, { isClone }));
+    });
+}
+
+// The track holds two identical halves so the -50% keyframe lands on a matching
+// frame; each half repeats the row enough times to stay wider than the viewport.
+function layoutPartnerTrack(track, items) {
+    if (!track || !items.length) return;
 
     track.replaceChildren();
+    appendPartnerSet(track, items, false);
 
-    items.forEach((item) => {
-        track.appendChild(createPartnerCard(item));
-    });
+    const setWidth = track.scrollWidth;
+    const viewportWidth = (track.parentElement && track.parentElement.clientWidth) || window.innerWidth;
+    const repeats = setWidth > 0 ? Math.max(2, Math.ceil(viewportWidth / setWidth) + 1) : 2;
 
-    items.forEach((item) => {
-        track.appendChild(createPartnerCard(item, { isClone: true }));
-    });
+    for (let i = 1; i < repeats; i += 1) {
+        appendPartnerSet(track, items, true);
+    }
 
-    track.style.setProperty('--partners-duration', `${Math.max(22, items.length * 4.5)}s`);
+    for (let i = 0; i < repeats; i += 1) {
+        appendPartnerSet(track, items, true);
+    }
+
+    const halfWidth = setWidth * repeats;
+    const duration = Math.max(18, halfWidth / PARTNER_MARQUEE_SPEED);
+    track.style.setProperty('--partners-duration', `${duration}s`);
+}
+
+function layoutPartnerMarquee() {
+    partnerMarqueeRows.forEach(({ track, items }) => layoutPartnerTrack(track, items));
 }
 
 function renderPartners(data) {
@@ -1064,19 +1117,32 @@ function renderPartners(data) {
     }
 
     const items = data.items || [];
-    const topRow = items.filter((_, index) => index % 2 === 0);
-    const bottomRow = items.filter((_, index) => index % 2 === 1);
+    // Desktop load order matches partners.json:
+    // top 1–5, bottom 6–9 (ceil split keeps the longer row on top).
+    const splitAt = Math.ceil(items.length / 2);
+    const topRow = items.slice(0, splitAt);
+    const bottomRow = items.slice(splitAt);
 
-    fillPartnerTrack(track, topRow.length ? topRow : items);
+    partnerMarqueeRows = [{ track, items: topRow.length ? topRow : items }];
 
     if (trackAlt) {
+        trackAlt.hidden = bottomRow.length === 0;
         if (bottomRow.length) {
-            trackAlt.hidden = false;
-            fillPartnerTrack(trackAlt, bottomRow);
+            partnerMarqueeRows.push({ track: trackAlt, items: bottomRow });
         } else {
-            trackAlt.hidden = true;
             trackAlt.replaceChildren();
         }
+    }
+
+    layoutPartnerMarquee();
+
+    if (!partnerMarqueeResizeHandler) {
+        let resizeTimer = null;
+        partnerMarqueeResizeHandler = () => {
+            window.clearTimeout(resizeTimer);
+            resizeTimer = window.setTimeout(layoutPartnerMarquee, 200);
+        };
+        window.addEventListener('resize', partnerMarqueeResizeHandler);
     }
 
     observeRevealElements(document.getElementById('partners'));

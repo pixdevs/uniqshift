@@ -12,36 +12,48 @@
     position: relative;
     overflow: hidden;
     width: 100%;
-    margin-top: 0.5rem;
+    max-width: 100%;
+    margin-top: 0.25rem;
     display: flex;
     flex-direction: column;
-    gap: clamp(0.5rem, 1.4vw, 1.1rem);
+    gap: 0;
+    /* Narrow dissolve — just enough to soften the clip, not hide the first card. */
     mask-image: linear-gradient(
         90deg,
-        transparent,
-        #000 8%,
-        #000 92%,
-        transparent
+        transparent 0%,
+        rgba(0, 0, 0, 0.35) 1.5%,
+        #000 4.5%,
+        #000 95.5%,
+        rgba(0, 0, 0, 0.35) 98.5%,
+        transparent 100%
     );
     -webkit-mask-image: linear-gradient(
         90deg,
-        transparent,
-        #000 8%,
-        #000 92%,
-        transparent
+        transparent 0%,
+        rgba(0, 0, 0, 0.35) 1.5%,
+        #000 4.5%,
+        #000 95.5%,
+        rgba(0, 0, 0, 0.35) 98.5%,
+        transparent 100%
     );
 }
 
 .partners__track {
     --partners-duration: 28s;
+    --partners-gap: clamp(2.25rem, 4.2vw, 4rem);
     list-style: none;
     display: flex;
     align-items: center;
     width: max-content;
-    gap: clamp(1.75rem, 3.4vw, 3.25rem);
+    gap: 0;
     margin: 0;
-    padding: 0;
-    animation: partners-marquee var(--partners-duration) linear infinite;
+    /* Vertical padding keeps the hover lift and border clear of the
+       overflow: hidden clip on the marquee viewport. */
+    padding: 0.75rem 0;
+    /* Delay + backwards fill: hold the start frame so JSON order is readable on load. */
+    animation: partners-marquee var(--partners-duration) linear 1.4s infinite;
+    animation-fill-mode: backwards;
+    will-change: transform;
 }
 
 .partners__track--reverse {
@@ -66,81 +78,147 @@
     }
 }
 
+/* Spacing lives on the item, not as flex gap, so each half of the track is an
+   exact multiple of the item pitch and the -50% loop point stays seamless. */
 .partners__item {
     flex: 0 0 auto;
     display: flex;
+    padding-right: var(--partners-gap);
 }
 
 .partners__card {
-    width: 176px;
-    height: 108px;
-    text-align: center;
+    width: 358px;
+    height: 122px;
+    text-align: left;
     cursor: pointer;
-    border: none;
-    border-radius: 0;
-    background: transparent;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.6);
     box-shadow: none;
-    padding: 0.75rem;
+    padding: 1rem 1.15rem;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.9rem;
     position: relative;
     overflow: hidden;
     color: inherit;
     font: inherit;
+    transition:
+        border-color var(--duration-fast) var(--ease-out),
+        transform var(--duration-fast) var(--ease-out),
+        box-shadow var(--duration-fast) var(--ease-out),
+        background var(--duration-fast) var(--ease-out);
+}
+
+[data-theme="dark"] .partners__card {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.partners__plate {
+    flex: 0 0 auto;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .partners__plate {
+    background: #fff;
+    border-color: rgba(15, 23, 42, 0.08);
 }
 
 .partners__logo {
-    max-width: 100%;
-    max-height: 76px;
+    max-width: 38px;
+    max-height: 38px;
     width: auto;
     height: auto;
     object-fit: contain;
-    filter: grayscale(100%) contrast(1.08) brightness(1.08);
-    opacity: 0.78;
-    transition:
-        filter var(--duration-normal) var(--ease-out),
-        opacity var(--duration-normal) var(--ease-out);
-}
-
-[data-theme="dark"] .partners__logo {
-    filter: grayscale(100%) contrast(1.1) brightness(1.35);
-    opacity: 0.85;
+    opacity: 1;
 }
 
 .partners__initials {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 76px;
-    height: 76px;
-    border-radius: 50%;
-    font-size: 1.125rem;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    font-size: 0.9375rem;
     font-weight: var(--font-weight-semibold);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     color: var(--color-primary);
     background: rgba(243, 108, 33, 0.12);
     line-height: 1;
-    transition:
-        background var(--duration-fast) var(--ease-out),
-        color var(--duration-fast) var(--ease-out);
 }
 
-[data-theme="dark"] .partners__initials {
-    background: rgba(255, 140, 66, 0.16);
+.partners__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.25rem;
+    min-width: 0;
+    flex: 1;
+}
+
+.partners__name {
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+}
+
+.partners__engagement {
+    font-size: 0.625rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    overflow: hidden;
+}
+
+.partners__description {
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+    line-height: 1.45;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
 }
 
 @media (hover: hover) and (pointer: fine) {
-    .partners__card:hover .partners__logo,
-    .partners__card:focus-visible .partners__logo {
-        filter: grayscale(0%) contrast(1) brightness(1);
-        opacity: 1;
+    .partners__card:hover,
+    .partners__card:focus-visible {
+        border-color: rgba(243, 108, 33, 0.45);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
     }
 
-    .partners__card:hover .partners__initials,
-    .partners__card:focus-visible .partners__initials {
-        background: rgba(243, 108, 33, 0.2);
-        color: var(--color-primary);
+    [data-theme="dark"] .partners__card:hover,
+    [data-theme="dark"] .partners__card:focus-visible {
+        border-color: rgba(255, 140, 66, 0.5);
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
     }
 }
 
@@ -603,6 +681,7 @@
         width: 100%;
         max-width: 100%;
         justify-content: center;
+        --partners-gap: 0;
         gap: 1rem 1.25rem;
     }
 
@@ -613,6 +692,7 @@
     .partners__card,
     .partners__logo,
     .partners__initials,
+    .partners__plate,
     .partner-drawer__overlay,
     .partner-drawer__panel,
     .carousel__track {
@@ -657,19 +737,34 @@
 /* ===== Mobile ===== */
 @media (max-width: 640px) {
     .partners__card {
-        width: 140px;
-        height: 92px;
-        padding: 0.55rem;
+        width: 292px;
+        height: 116px;
+        padding: 0.85rem 0.95rem;
+        gap: 0.7rem;
+    }
+
+    .partners__plate {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
     }
 
     .partners__logo {
-        max-height: 62px;
+        max-width: 32px;
+        max-height: 32px;
     }
 
     .partners__initials {
-        width: 62px;
-        height: 62px;
-        font-size: 0.9375rem;
+        font-size: 0.8125rem;
+        border-radius: 10px;
+    }
+
+    .partners__name {
+        font-size: 0.8125rem;
+    }
+
+    .partners__description {
+        font-size: 0.6875rem;
     }
 
     .partner-drawer__panel {
