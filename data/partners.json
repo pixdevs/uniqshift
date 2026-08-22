@@ -61,7 +61,7 @@
     {
       "id": "srm",
       "name": "SRM Institute of Science and Technology",
-      "logo": null,
+      "logo": "src/partners/srm.webp",
       "type": "institution",
       "engagement": "Professor of Practice",
       "quote": "Practice-led insight for future-ready talent.",
@@ -78,7 +78,7 @@
     {
       "id": "mar-ephraem",
       "name": "Mar Ephraem College of Engineering & Technology",
-      "logo": null,
+      "logo": "src/partners/MarEplog.png",
       "type": "institution",
       "engagement": null,
       "quote": "Industry-aligned pathways for engineering graduates.",
@@ -95,7 +95,7 @@
     {
       "id": "egsp",
       "name": "EGS Pillay Engineering College",
-      "logo": null,
+      "logo": "src/partners/EGS.png",
       "type": "institution",
       "engagement": null,
       "quote": "Clearer bridges from campus to career.",
@@ -112,7 +112,7 @@
     {
       "id": "sxcce",
       "name": "St. Xavier's Catholic College of Engineering",
-      "logo": null,
+      "logo": "src/partners/StXaviers.png",
       "type": "institution",
       "engagement": "Member of the Academic Council",
       "quote": "Governance insight that strengthens academic strategy.",
@@ -159,6 +159,23 @@
         }
       ],
       "url": null
-    }
+    },
+    {
+      "id": "nec",
+      "name": "National Engineering College",
+      "logo": "src/partners/NEC.png",
+      "type": "institution",
+      "engagement": "Student Mentoring",
+      "quote": "Elevating Top Talent Talent for Career Success",
+      "about": "National Engineering College is one of the top institutions in South Tamil Nadu which offers quality education and choicest placement for students from all departments.",
+      "testimonials": [
+        {
+          "quote": "Ganesh is a proud alumnnus of our institution and with his direction and thought leadership, we at NEC have set a clear process towards setting a solid roadmap for the top 10% students of our institution and also the students who have been offered scholarship.",
+          "person": "Dr Neelakantan",
+          "role": "Senior Dean"
+        }
+      ],
+      "url": "http://www.nec.edu.in"
+  }
   ]
 }
