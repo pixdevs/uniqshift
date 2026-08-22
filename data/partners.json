@@ -22,9 +22,9 @@
     {
       "id": "sscet",
       "name": "Sri Shanmugha College of Engineering and Technology",
-      "logo": null,
+      "logo": "src/partners/ssei.png",
       "type": "institution",
-      "engagement": null,
+      "engagement": "Advisory & Talent Strategy",
       "quote": "Aligned campus readiness with industry expectations.",
       "about": "Sri Shanmugha College of Engineering and Technology builds future-ready academic ecosystems with a focus on industry-aligned learning, campus readiness, and sustained student outcomes.",
       "testimonials": [
@@ -34,7 +34,7 @@
           "role": "Partner Institution"
         }
       ],
-      "url": null
+      "url": https://shanmugha.edu.in/
     },
     {
       "id": "sjce",
