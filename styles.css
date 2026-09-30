@@ -2223,9 +2223,18 @@ section {
     background-color: var(--color-bg-alt);
 }
 
+.strategiq {
+    padding: 0;
+}
+
+.strategiq > .lab,
+.strategiq > .band,
+.strategiq > .band-alt {
+    padding: var(--section-y) 0;
+}
+
 .lab {
     background-image: var(--accent-wash);
-    padding-top: calc(var(--header-h) + var(--section-y));
 }
 
 .lab__lead {
