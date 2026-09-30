@@ -392,7 +392,7 @@ updateHeaderScroll();
 
 // ===== Active nav section =====
 
-const sectionIds = ['home', 'about', 'why-choose-us', 'services', 'partners', 'strategiq', 'founder', 'impact', 'contact'];
+const sectionIds = ['home', 'about', 'why-choose-us', 'services', 'partners', 'founder', 'impact', 'contact'];
 
 const sections = sectionIds
 
